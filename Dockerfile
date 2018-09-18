@@ -63,7 +63,7 @@ RUN set -ex \
 # Download and unzip Android SDK
 ENV ANDROID_HOME ${SDK_HOME}/android-sdk-linux
 ENV ANDROID_SDK ${SDK_HOME}/android-sdk-linux
-ENV ANDROID_SDK_MANAGER ${SDK_HOME}/android-sdk-linux/tools/bin/sdkmanager
+ENV ANDROID_SDK_MANAGER ${ANDROID_HOME}/tools/bin/sdkmanager
 ENV SDK_TOOLS 4333796
 
 # Download and extract Android Tools
@@ -88,5 +88,5 @@ ENV SDK_COMPONENTS "tools" \
 RUN mkdir -p ${ANDROID_HOME}/licenses/ && \
     echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > ${ANDROID_HOME}/licenses/android-sdk-license && \
     echo "84831b9409646a918e30573bab4c9c91346d8abd" > ${ANDROID_HOME}/licenses/android-sdk-preview-license && \
-    ${ANDROID_SDK_MANAGER}  ${SDK_COMPONENTS} && \
-    yes | ${ANDROID_HOME}/tools/bin/sdkmanager "--licenses"
+    yes | ${ANDROID_SDK_MANAGER} "--licenses" && \
+    ${ANDROID_SDK_MANAGER} ${SDK_COMPONENTS}
