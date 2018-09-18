@@ -78,8 +78,13 @@ ENV PATH ${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:$ANDROID_HOME/platform-
 ENV SDK_COMPONENTS "tools" \
                    "platform-tools" \
                    "build-tools;23.0.1" \
-                   "build-tools;23.0.3" \
+                   "build-tools;26.0.3" \
+                   "build-tools;27.0.3" \
+                   "build-tools;25.0.2" \
                    "platforms;android-23" \
+                   "platforms;android-25" \
+                   "platforms;android-26" \
+                   "platforms;android-27" \
                    "extras;android;m2repository" \
                    "extras;google;m2repository" \
                    "extras;google;google_play_services" \
