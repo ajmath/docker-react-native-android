@@ -81,6 +81,7 @@ ENV SDK_COMPONENTS "tools" \
                    "build-tools;26.0.3" \
                    "build-tools;27.0.3" \
                    "build-tools;25.0.2" \
+                   "build-tools;25.0.3" \
                    "platforms;android-23" \
                    "platforms;android-25" \
                    "platforms;android-26" \
