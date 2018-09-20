@@ -77,14 +77,7 @@ ENV PATH ${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:$ANDROID_HOME/platform-
 # Install Android SDK Components
 ENV SDK_COMPONENTS "tools" \
                    "platform-tools" \
-                   "build-tools;23.0.1" \
-                   "build-tools;26.0.3" \
                    "build-tools;27.0.3" \
-                   "build-tools;25.0.2" \
-                   "build-tools;25.0.3" \
-                   "platforms;android-23" \
-                   "platforms;android-25" \
-                   "platforms;android-26" \
                    "platforms;android-27" \
                    "extras;android;m2repository" \
                    "extras;google;m2repository" \
@@ -96,3 +89,21 @@ RUN mkdir -p ${ANDROID_HOME}/licenses/ && \
     echo "84831b9409646a918e30573bab4c9c91346d8abd" > ${ANDROID_HOME}/licenses/android-sdk-preview-license && \
     yes | ${ANDROID_SDK_MANAGER} "--licenses" && \
     ${ANDROID_SDK_MANAGER} ${SDK_COMPONENTS}
+
+# Install watchman
+ENV WATCHMAN_BUILD_DEPS autoconf automake libpcre3-dev
+RUN dpkg --add-architecture i386 && \
+    apt-get -qq update && \
+    apt-get -qqy install $WATCHMAN_BUILD_DEPS --no-install-recommends && \
+    git clone https://github.com/facebook/watchman.git && \
+    cd watchman && \
+    git checkout v3.1 && \
+    ./autogen.sh && \
+    ./configure && \
+    make && \
+    make install && \
+    cd .. && rm -rf watchman && \
+    apt-get --assume-yes  remove --auto-remove --purge $WATCHMAN_BUILD_DEPS && \
+    apt-get clean && \
+    apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/*
