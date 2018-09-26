@@ -93,15 +93,15 @@ RUN mkdir -p ${ANDROID_HOME}/licenses/ && \
     ${ANDROID_SDK_MANAGER} ${SDK_COMPONENTS}
 
 # Install watchman
-ENV WATCHMAN_BUILD_DEPS autoconf automake libpcre3-dev
+ENV WATCHMAN_BUILD_DEPS autoconf automake libpcre3-dev libtool pkg-config libssl-dev
 RUN dpkg --add-architecture i386 && \
     apt-get -qq update && \
     apt-get -qqy install $WATCHMAN_BUILD_DEPS --no-install-recommends && \
     git clone https://github.com/facebook/watchman.git && \
     cd watchman && \
-    git checkout v3.1 && \
+    git checkout v4.9.0 && \
     ./autogen.sh && \
-    ./configure && \
+    ./configure --without-python && \
     make && \
     make install && \
     cd .. && rm -rf watchman && \
