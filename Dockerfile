@@ -79,6 +79,8 @@ ENV SDK_COMPONENTS "tools" \
                    "platform-tools" \
                    "build-tools;27.0.3" \
                    "platforms;android-27" \
+                   "platforms;android-26" \
+                   "platforms;android-25" \
                    "extras;android;m2repository" \
                    "extras;google;m2repository" \
                    "extras;google;google_play_services" \
